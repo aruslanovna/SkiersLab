@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/labazure/databases/LabDB",
+      "type": "mssql.azure",
+      "connectionId": "Server=labazure.database.windows.net,1433;InitialCatalog=LabDB;PersistSecurityInfo=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;ConnectionTimeout=30;",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}
