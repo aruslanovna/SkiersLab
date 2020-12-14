@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using Microsoft.EntityFrameworkCore;
+using SkiersLab.Repository;
+
 namespace SkiersLab
 {
     public class Startup
@@ -24,8 +26,12 @@ namespace SkiersLab
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SkiersContextDB>(options =>
-       options.UseSqlServer(Configuration.GetConnectionString("SkiersDatabase")));
+            
+            services.AddDbContext<SkiersContextDB>(options => {
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("SkiersDatabase"));
+            }, ServiceLifetime.Transient);
+            services.AddScoped<ISkiersRep, SkiersRep>();
             services.AddControllersWithViews();
         }
 

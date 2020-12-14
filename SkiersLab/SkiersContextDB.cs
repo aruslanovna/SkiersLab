@@ -16,6 +16,7 @@ namespace SkiersLab
         public DbSet<Race> Races { get; set; }
         public DbSet<Result> Results { get; set; }
         public DbSet<WinterSeason> WinterSeasons { get; set; }
+        public DbSet<SkiersLab.Models.RaceInfo> RaceInfo { get; set; }
 
     }
 }

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<SkiersLab.Models.RaceInfo>
+
+@{
+    ViewData["Title"] = "AllResultsandSkiersForToday";
+}
+
+<h1>AllResultsandSkiersForToday</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.date_race)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.distance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.city)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.time_min)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.time_sec)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fis_point)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.athlete)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.date_race)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.distance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.city)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.time_min)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.time_sec)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fis_point)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.athlete)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.codex">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.codex">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.codex">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

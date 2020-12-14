@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SkiersLab.Models;
+using SkiersLab.Repository;
 
 namespace SkiersLab.Controllers
 {
@@ -14,20 +16,35 @@ namespace SkiersLab.Controllers
     [ApiController]
     public class Skiers1Controller : ControllerBase
     {
-        private readonly SkiersContextDB _context;
-
-        public Skiers1Controller(SkiersContextDB context)
+        private  readonly SkiersContextDB _context;
+        private readonly ISkiersRep _rep;
+        public  Skiers1Controller(SkiersContextDB context, ISkiersRep rep)
         {
+            _rep = rep;
             _context = context;
         }
 
         // GET: api/Skiers1
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Skier>>> GetSkiers()
+        public  async Task<ActionResult<IEnumerable<Skier>>> GetSkiers()
         {
+
+
+            _rep.ParallelWork();
             return await _context.Skiers.ToListAsync();
         }
+        
+        public async Task<ActionResult<Skier>> GetSkierById(int id)
+        {
+            var skier = await _context.Skiers.FindAsync(id);
 
+            if (skier == null)
+            {
+                return NotFound();
+            }
+
+            return skier;
+        }
         // GET: api/Skiers1/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Skier>> GetSkier(int id)
